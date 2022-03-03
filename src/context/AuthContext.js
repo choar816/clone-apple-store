@@ -5,7 +5,9 @@ export const AuthContext = createContext();
 
 const AuthContextProvider = ({ children }) => {
   const navigate = useNavigate();
+
   const [isAuth, setIsAuth] = useState(false);
+  
   const isAuthenticated = () => {
     var Customer = clayful.Customer;
     var options = {
@@ -19,6 +21,7 @@ const AuthContextProvider = ({ children }) => {
         return;
       }
       var data = result.data;
+      
       if (data.authenticated) {
         setIsAuth(true);
       } else {
@@ -41,9 +44,9 @@ const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContextProvider value={AuthContextData}>
+    <AuthContext.Provider value={AuthContextData}>
       {children}
-    </AuthContextProvider>
+    </AuthContext.Provider>
   );
 };
 
